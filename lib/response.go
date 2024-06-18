@@ -1,36 +1,42 @@
 package lib
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
-func PostLogin() gin.HandlerFunc {
+func PostLogin(mySQLDB *MySQLDB) gin.HandlerFunc {
 	return func(context *gin.Context) {
-		var user User
+		var (
+			userLogin User
+			userDB    User
+		)
 
 		context.Header("Content-Type", "text/html; charset=utf-8")
-		context.BindJSON(&user)
-		tokenString, err := GenerateJWT(user)
+		err := context.ShouldBind(&userLogin)
 
 		if err != nil {
-			context.JSON(
-				http.StatusBadRequest,
-				gin.H{
-					"error": err.Error(),
-				},
-			)
+			context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
 
-		if valid, err := ValidateJWT(tokenString); !valid || err != nil {
-			context.JSON(
-				http.StatusBadRequest,
-				gin.H{
-					"error": err.Error(),
-				},
-			)
+		fmt.Println(userLogin)
+		if !userLogin.Validate() {
+			context.JSON(http.StatusBadRequest, gin.H{"error": "Invalid user"})
+			return
+		}
+
+		err = mySQLDB.GetUserByUsername(userLogin.Username, &userDB)
+
+		if err != nil {
+			context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		if userDB.Password != userLogin.Password {
+			context.JSON(http.StatusBadRequest, gin.H{"error": "Invalid password"})
 			return
 		}
 
@@ -39,7 +45,7 @@ func PostLogin() gin.HandlerFunc {
 			"template/home.html",
 			gin.H{
 				"title":   "Book Store",
-				"content": "Login Success",
+				"content": "Login Success: Logged in as " + userLogin.Username,
 			},
 		)
 	}

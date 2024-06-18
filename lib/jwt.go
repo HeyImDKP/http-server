@@ -9,11 +9,6 @@ import (
 
 var tokenKey = []byte("secret")
 
-type User struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-}
-
 func GenerateJWT(user User) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"username":   user.Username,
