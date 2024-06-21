@@ -21,17 +21,17 @@
       Login
     </button>
 
+    <button
+      onclick="document.getElementById('id02').style.display='block'"
+      style="width: auto"
+    >
+      Sign up
+    </button>
+
     <div id="id01" class="modal">
-      <form
-        class="modal-content animate"
-        action="/login"
-        method="post"
-      >
+      <form class="modal-content animate" action="/login" method="post">
         <div class="imgcontainer">
-          <span
-            onclick="close_modal()"
-            class="close"
-            title="Close Modal"
+          <span onclick="close_modal()" class="close" title="Close Modal"
             >&times;</span
           >
         </div>
@@ -39,7 +39,7 @@
         <div class="container">
           <label for="uname"><b>Username</b></label>
           <input
-            id = "username"
+            id="username"
             type="text"
             placeholder="Enter Username"
             name="username"
@@ -48,7 +48,7 @@
 
           <label for="psw"><b>Password</b></label>
           <input
-            id = "password"
+            id="password"
             type="password"
             placeholder="Enter Password"
             name="password"
@@ -56,7 +56,7 @@
           />
 
           <label>
-            <input type="checkbox" checked="unchecked" onclick="show_password()" /> Show password
+            <input type="checkbox" onclick="show_password()" /> Show password
           </label>
 
           <button type="submit">Login</button>
@@ -68,18 +68,67 @@
         </div>
 
         <div class="container" style="background-color: #f1f1f1">
-          <button
-            type="button"
-            onclick="close_modal()"
-            class="cancelbtn"
-          >
+          <button type="button" onclick="close_modal()" class="cancelbtn">
             Cancel
           </button>
-          <button
-            type="button"
-            onclick="clear_login()"
-            class="clearbtn"
+          <button type="button" onclick="clear_login()" class="clearbtn">
+            Clear
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Sign up -->
+    <div id="id02" class="modal">
+      <form class="modal-content animate" action="/signup" method="post">
+        <div class="imgcontainer">
+          <span onclick="close_modal()" class="close" title="Close Modal"
+            >&times;</span
           >
+        </div>
+
+        <div class="container">
+          <label for="uname"><b>Username</b></label>
+          <input
+            id="username"
+            type="text"
+            placeholder="Enter Username"
+            name="username"
+            required
+          />
+
+          <label for="psw"><b>Password</b></label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter Password"
+            name="password"
+            required
+          />
+
+          <label>
+            <input type="checkbox" onclick="show_password()" /> Show password
+            <br>
+            <br>
+          </label>
+
+          <label for="email"><b>Email</b></label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter Email"
+            name="email"
+            required
+          />
+
+          <button type="submit">Sign up</button>
+        </div>
+
+        <div class="container" style="background-color: #f1f1f1">
+          <button type="button" onclick="close_modal()" class="cancelbtn">
+            Cancel
+          </button>
+          <button type="button" onclick="clear_login()" class="clearbtn">
             Clear
           </button>
         </div>

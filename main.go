@@ -17,7 +17,7 @@ func main() {
 	InitResponse(router, mySQLDB)
 
 	port := os.Getenv("PORT")
-	if port != "" {
+	if port == "" {
 		port = "8080"
 	}
 	if err := router.Run(":" + port); err != nil {

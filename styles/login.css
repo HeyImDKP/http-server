@@ -4,7 +4,8 @@ body {
 
 /* Full-width input fields */
 input[type=text],
-input[type=password] {
+input[type=password], 
+input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -87,9 +88,9 @@ span.psw {
     margin: 5% auto 15% auto;
     /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 80%;
-    max-width: 25vw;
-    max-height: 50vh;
+    /* width: 80%; */
+    width: 25vw;
+    height: 50vh;
     /* Could be more or less, depending on screen size */
 }
 
@@ -145,4 +146,25 @@ span.psw {
     .cancelbtn {
         width: 100%;
     }
+}
+
+@media screen and (max-width: 800px) {
+    .modal-content {
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .modal-content {
+        width: 80vw;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .modal-content {
+        width: 90vw;
+        height: auto;
+    }
+    
 }
