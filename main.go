@@ -46,8 +46,9 @@ func InitDatabase() *lib.MySQLDB {
 }
 
 func InitResponse(router *gin.Engine, mySQLDB *lib.MySQLDB) {
-	router.GET("/", lib.GetLogin())
+	router.GET("/", lib.GetHome())
 	router.POST("/login", lib.PostLogin(mySQLDB))
+	router.POST("/signup", lib.PostSignup(mySQLDB))
 }
 
 func LoadServerFiles(router *gin.Engine) {
